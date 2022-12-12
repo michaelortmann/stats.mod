@@ -213,7 +213,7 @@ static struct template_content *templates_content_addhtml(struct template_conten
 static struct llist_2string *templates_content_parseparams(char *buf)
 {
   struct llist_2string *params;
-  char *name, *value, *s;
+  char *name, *value;
 
   Assert(buf);
   params = NULL;
@@ -221,7 +221,6 @@ static struct llist_2string *templates_content_parseparams(char *buf)
   while (buf[0]) {
     while (buf[0] == ' ')
       buf++;
-    s = buf;
     name = csplit(&buf, '=');
     if (buf[0] != '"') {
       putlog(LOG_MISC, "*", "ERROR parsing parameters: missing '\"'! (%s)", name);
