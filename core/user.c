@@ -38,8 +38,8 @@ static int stats_checkhand(char *oldnick, char *newnick)
 }
 
 static cmd_t stats_nkch[] = {
-	{"*", "", (Function) stats_checkhand, "stat:nkch"},
-	{0, 0, 0, 0}
+	{"*", "", (IntFunc) stats_checkhand, "stat:nkch"},
+	{0,   0,  0,                         0}
 };
 
 static void deloldstatusers()

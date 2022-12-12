@@ -131,54 +131,54 @@ static int eggbnd_minutely()
 
 static cmd_t stats_pubm[] =
 {
-  {"*", "", (Function) eggbnd_pubm, "stat"},
-  {0, 0, 0, 0}
+  {"*", "", (IntFunc) eggbnd_pubm, "stat"},
+  {0,   0,  0,                     0}
 };
 
 static cmd_t stats_topc[] =
 {
-  {"*", "", (Function) eggbnd_topc, "stat"},
-  {0, 0, 0, 0}
+  {"*", "", (IntFunc) eggbnd_topc, "stat"},
+  {0,   0,  0,                     0}
 };
 
 static cmd_t stats_ctcp[] =
 {
-  {"ACTION", "", (Function) eggbnd_action, "stat"},
-  {0, 0, 0, 0}
+  {"ACTION", "", (IntFunc) eggbnd_action, "stat"},
+  {0,        0,  0,                       0}
 };
 
 static cmd_t stats_kick[] =
 {
-  {"*", "", (Function) eggbnd_kick, "stat"},
-  {0, 0, 0, 0}
+  {"*", "", (IntFunc) eggbnd_kick, "stat"},
+  {0,   0,  0,                     0}
 };
 
 static cmd_t stats_mode[] =
 {
-  {"*", "", (Function) eggbnd_mode, "stat"},
-  {0, 0, 0, 0}
+  {"*", "", (IntFunc) eggbnd_mode, "stat"},
+  {0,   0,  0,                     0}
 };
 
 static cmd_t stats_nick[] =
 {
-  {"*", "", (Function) eggbnd_nick, "stat"},
-  {0, 0, 0, 0}
+  {"*", "", (IntFunc) eggbnd_nick, "stat"},
+  {0,   0,  0,                     0}
 };
 
 static cmd_t stats_join[] =
 {
-  {"*", "", (Function) eggbnd_join, "stat"},
-  {0, 0, 0, 0}
+  {"*", "", (IntFunc) eggbnd_join, "stat"},
+  {0,   0,  0,                     0}
 };
 
 static cmd_t stats_part[] =
 {
-  {"*", "", (Function) eggbnd_part, "stat"},
-  {0, 0, 0, 0}
+  {"*", "", (IntFunc) eggbnd_part, "stat"},
+  {0,   0,  0,                     0}
 };
 
 static cmd_t stats_sign[] =
 {
-  {"*", "", (Function) eggbnd_sign, "stat"},
-  {0, 0, 0, 0}
+  {"*", "", (IntFunc) eggbnd_sign, "stat"},
+  {0,   0,  0,                     0}
 };

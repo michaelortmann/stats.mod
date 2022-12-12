@@ -1,6 +1,7 @@
 Changes in Stats.mod: (since v1.0.1)
 --------------------
 1.6
+- Fixed incompatible-pointer-types
 - Fixed unused-function
 - Fixed unused-but-set-variable
 - Fixed format
