@@ -123,7 +123,7 @@ static int eggbnd_sign(char *nick, char *uhost, char *hand, char *channel,
 	return 0;
 }
 
-static int eggbnd_minutely()
+static void eggbnd_minutely()
 {
 	sensor_minutely();
 	egg_check_chan_desynch();
