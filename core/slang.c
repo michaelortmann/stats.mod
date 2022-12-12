@@ -70,7 +70,7 @@ static struct slang_header *slang_create(struct slang_header *list, char *lang, 
   struct slang_header *nslang, *l;
 
   Assert(lang);
-  debug2("Creating language '%s' starting by %d", lang, (int) list);
+  debug2("Creating language '%s' starting by %" PRIuPTR, lang, (uintptr_t) list);
   for (nslang = list; nslang; nslang = nslang->next)
     if (!strcasecmp(nslang->lang, lang))
       return list;
