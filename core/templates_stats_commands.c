@@ -358,7 +358,7 @@ static void template_send_value(int idx, struct template_content *h_tpc)
   if (!glob_locstats || (glob_timerange == T_ERROR) || !glob_toptype) {
     if (!glob_locstats)
       debug0("no locstats");
-    if (!glob_timerange == T_ERROR)
+    if (glob_timerange == T_ERROR)
       debug0("no timerange");
     if (!glob_toptype)
       debug0("no toptype");
