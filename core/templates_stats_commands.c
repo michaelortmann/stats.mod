@@ -368,7 +368,7 @@ static void template_send_value(int idx, struct template_content *h_tpc)
   if (i == T_MINUTES)
     dprintf(idx, "%s", stats_duration(glob_locstats->values[glob_timerange][i] * 60, 2));
   else if (i >= 0)
-    dprintf(idx, "%d", glob_locstats->values[glob_timerange][i]);
+    dprintf(idx, "%ld", glob_locstats->values[glob_timerange][i]);
   else if (i == T_WPL) {
     if (glob_locstats->values[glob_timerange][T_LINES])
       dprintf(idx, "%.2f",

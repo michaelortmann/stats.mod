@@ -1,10 +1,9 @@
 Changes in Stats.mod: (since v1.0.1)
 --------------------
 1.6
-- Fixed format bug
 - Fixed unused-function
 - Fixed unused-but-set-variable
-- Fixed format time_t
+- Fixed format
 - Fixed pointer-to-int-cast
 - Fixed typos
 - Removed compat directory
