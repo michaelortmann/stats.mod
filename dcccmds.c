@@ -436,7 +436,7 @@ static int cmd_chsusername(struct userrec *user, int idx, char *par)
   }
   if (get_user_by_handle(userlist, oldnick)) {
     dprintf(idx, "%s exists in the eggdrop userfile. Please use .chnick or "
-            ".chhand instead to keep the stats synched.\n");
+            ".chhand instead to keep the stats synched.\n", oldnick);
     return 0;
   }
   track_stat_user(oldnick, newnick);
