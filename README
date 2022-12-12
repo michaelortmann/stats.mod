@@ -8,7 +8,7 @@ long the user has been on the channel. Depending on the configuration,
 it even logs the user's favourite words and the most used words on
 the channel.
 
-The statistics are accessable via public commands (!top10, !stat...)
+The statistics are accessible via public commands (!top10, !stat...)
 and via http.
 
 
@@ -97,7 +97,7 @@ DCC commands:
 .chsusername <oldname> <newname>
   changes the name of a user in the stats database
 .purgestats
-  deletes stats for non-existant users, empty stats and deletes expired users.
+  deletes stats for non-existent users, empty stats and deletes expired users.
   (m|-)
 .sumuser <user1> <user2>
   adds all statistics of user2 to user1 and deletes user2
@@ -146,7 +146,7 @@ Livestats:
 ----------
 
 If you activate livestats, your bot will listen on a specified port for
-http connections. (accessable via http://your.shell.com:8033/, for example
+http connections. (accessible via http://your.shell.com:8033/, for example
 (depending on your configuration, you might have to use your vhost instead))
 The webfiles will then be generated on the fly. There will also be a little
 channel and user list which makes it easier for your users to browse through

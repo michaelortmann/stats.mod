@@ -294,7 +294,7 @@ static void template_send_toplist(int idx, struct template_content *h_tpc)
     if (!listsuser(ls, glob_globstats->chan))
       continue;
     // break if the value is 0, because we probably reached the end
-    // of the sorted list (who want's to see the stats of 1000 users who
+    // of the sorted list (who wants to see the stats of 1000 users who
     // don't have any stats in the sorted value?)
     if ((glob_sorting >= 0) && !ls->values[glob_timerange][glob_sorting])
       break;
@@ -650,7 +650,7 @@ static void template_send_random_kicks(int idx, struct template_content *h_tpc)
 }
 
 /* <?kick_contexts ..?>
- * sends the last few loglines before a kick occured.
+ * sends the last few loglines before a kick occurred.
  * the log of the actual kick is _not_ sent with this command
  */
 static void template_send_kick_contexts(int idx, struct template_content *h_tpc)

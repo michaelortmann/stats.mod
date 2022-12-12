@@ -67,7 +67,7 @@
       %bpurgestats%b
       %bsumuser%b
 %{+n}
-   There is also a list of tcl settings avalible,
+   There is also a list of tcl settings available,
    use %b'.help stats settings'%b   
 %{help=all}%{+m}
 ###  commands for the %bstats module%b
@@ -91,5 +91,5 @@
       %bpurgestats%b
       %bsumuser%b
 %{+n}
-   There is also a list of tcl settings avalible,
+   There is also a list of tcl settings available,
    use %b'.help stats settings'%b

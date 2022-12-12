@@ -154,7 +154,7 @@ static struct template_content *templates_content_parse(char *buf)
     if (!strncmp(cmdstart, "--", 2))
       continue;
 
-    // check if we need a seperate end-tag, or if the tag is already terminated
+    // check if we need a separate end-tag, or if the tag is already terminated
     // (following XML-style)
     if (cmdstart[strlen(cmdstart) - 1] == '/') {
       need_end_tag = 0;

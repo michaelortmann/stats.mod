@@ -29,7 +29,7 @@ set acset(monologue) 7
 set acset(repeatpunish) 2
 # Monologue: This is also a strong indication of a cheating attempt.
 set acset(monologuepunish) 2
-# Colors: Users who use colors aren't necessarly cheating, so just
+# Colors: Users who use colors aren't necessarily cheating, so just
 #         don't increase the stats and don't punish them.
 set acset(colorpunish) 1
 

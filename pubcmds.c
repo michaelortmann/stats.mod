@@ -323,7 +323,7 @@ static char *tell_place(char *nick, char *hand, char *channel, char *text)
       who = u->handle;
     else if ((itmp = get_timerange(par)) != T_ERROR)
       today = itmp;
-    // oh.. what now? We can't know if it's a wrong type or a non-existant user,
+    // oh.. what now? We can't know if it's a wrong type or a non-existent user,
     // so let's assume it is a user and return an error
     else {
       glob_nick = par;
@@ -335,7 +335,7 @@ static char *tell_place(char *nick, char *hand, char *channel, char *text)
     itype = T_WORDS;
   glob_sorting = itype;
   glob_timerange = today;
-  // if we still don't know whose place we should show, then just asume
+  // if we still don't know whose place we should show, then just assume
   // that the triggering user wants to know his own place (how selfish.. ^_^)
   if (!who) {
     // at first, check if we already know this user by handle
@@ -481,7 +481,7 @@ static char *tell_stat(char *nick, char *channel, char *text)
         continue;
       if (!first) {
         // if this isn't the first run, attach a "," to the string to
-        // seperate the values.
+        // separate the values.
         strncat(tosend, ",", 500);
       } else {
         first = 0;

@@ -348,7 +348,7 @@ static void http_activity(int idx, char *buf, int len)
 #ifdef sockoptions
       i = sockoptions(dcc[idx].sock, EGG_OPTION_UNSET, SOCK_BUFFER);
       if (i)
-        debug1("WARNING: sockoptions returned %d while trying to deativate "
+        debug1("WARNING: sockoptions returned %d while trying to deactivate "
                "buffering for POST parameters!", i);
 #endif
 #ifdef flush_inbuf
@@ -701,7 +701,7 @@ static char *encode_url(char *url)
   Assert(url);
   // if we are going to re-encode the same URL again, then
   // save some CPU time and just return our buffer again
-  // (I guess noone would mess with that buffer, so it _should_
+  // (I guess no one would mess with that buffer, so it _should_
   //  be save)
   if (url == eu_last_url)
     return encoded_url_buf;
