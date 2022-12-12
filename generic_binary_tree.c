@@ -41,7 +41,7 @@ struct generic_binary_tree_node {
 
 static void btree_add(struct generic_binary_tree *, void *);
 //static int btree_expmem(struct generic_binary_tree *);
-static int btree_recursive_expmem(struct generic_binary_tree *, struct generic_binary_tree_node *);
+//static int btree_recursive_expmem(struct generic_binary_tree *, struct generic_binary_tree_node *);
 static void *btree_get(struct generic_binary_tree *, void *t);
 static void btree_freetree(struct generic_binary_tree *);
 static void btree_recursive_free(struct generic_binary_tree *,
@@ -50,8 +50,8 @@ static void btree_getall(struct generic_binary_tree *, void (*) (void *));
 static void btree_recursive_getall(struct generic_binary_tree_node *,
                                    void (*) (void *));
 //static void btree_getall_expanded(struct generic_binary_tree *tree, void (*) (void *));
-static void btree_recursive_getall_expanded(struct generic_binary_tree_node *,
-                                            void (*) (void *));
+//static void btree_recursive_getall_expanded(struct generic_binary_tree_node *,
+//                                            void (*) (void *));
 static void btree_remove(struct generic_binary_tree *, void *);
 
 static void btree_add(struct generic_binary_tree *tree, void *data)
@@ -108,6 +108,7 @@ static int btree_expmem(struct generic_binary_tree *tree)
 }
 */
 
+/*
 static int btree_recursive_expmem(struct generic_binary_tree *tree, struct generic_binary_tree_node *node)
 {
   int size = 0;
@@ -120,6 +121,7 @@ static int btree_recursive_expmem(struct generic_binary_tree *tree, struct gener
   size += btree_recursive_expmem(tree, node->right);
   return size;
 }
+*/
 
 static void *btree_get(struct generic_binary_tree *tree, void *what)
 {
@@ -195,6 +197,7 @@ static void btree_getall_expanded(struct generic_binary_tree *tree, void (*func)
 }
 */
 
+/*
 static void btree_recursive_getall_expanded(struct generic_binary_tree_node *node,
                                             void (*func) (void *))
 {
@@ -206,6 +209,7 @@ static void btree_recursive_getall_expanded(struct generic_binary_tree_node *nod
   Assert(func);
   func(node->data);
 }
+*/
 
 static void btree_remove(struct generic_binary_tree *tree, void *data)
 {
