@@ -58,8 +58,8 @@ static void deloldstatusers()
 		while (h) {
 			if ((now - h->lastused) > TIMETOLIVE(h)) {
 				putlog(LOG_MISC, "*",
-					   "Stats.Mod: %s didn't use the hostmask %s during the last %d days. Removing from hostlist...",
-					   su->user, h->mask, ((now - h->lastused) / 86400));
+					   "Stats.Mod: %s didn't use the hostmask %s during the last %" PRId64 " days. Removing from hostlist...",
+					   su->user, h->mask, ((int64_t) (now - h->lastused)) / 86400);
 				nfree(h->mask);
 				if (lh)
 					lh->next = h->next;
@@ -83,9 +83,9 @@ static void deloldstatusers()
 				continue;
 			}
 			putlog(LOG_MISC, "*",
-				   "Stats.Mod: %s wasn't online since %d days. "
+				   "Stats.Mod: %s wasn't online since %" PRId64 " days. "
 				   "Deleting stat user...", su->user,
-				   (now - su->laston) / 86400);
+				   ((int64_t) (now - su->laston)) / 86400);
 			nfree(su->user);
 			if (lsu)
 				lsu->next = su->next;

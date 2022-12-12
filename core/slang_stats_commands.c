@@ -298,7 +298,7 @@ static void slang_send_lastspoke()
   char buf[20];
 
   if (glob_locstats) {
-    debug1("%d", glob_locstats->lastspoke);
+    debug1("%" PRId64, (int64_t) glob_locstats->lastspoke);
     snprintf(buf, sizeof(buf), "%s", stats_duration(now - glob_locstats->lastspoke, 2));
     strncat(slang_text_buf, buf, sizeof(slang_text_buf));
   }
