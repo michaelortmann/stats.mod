@@ -238,7 +238,7 @@ static void init_http_connection_data(int idx)
  */
 static int expmem_http(void *x)
 {
-  register struct http_connection_data *p = (struct http_connection_data *) x;
+  struct http_connection_data *p = (struct http_connection_data *) x;
   int tot = 0;
 
   Context;
@@ -597,7 +597,7 @@ static void kill_http(int idx, void *x)
  */
 static void out_http(int idx, char *buf, void *x)
 {
-  register struct http_connection_data *p = (struct http_connection_data *) x;
+  struct http_connection_data *p = (struct http_connection_data *) x;
 
   if (!p) {
     putlog(LOG_MISC, "*", "No http_connection pointer. This should not happen!");
@@ -816,7 +816,7 @@ static int http_flood()
  */
 static char *csplit(char **rest, char divider)
 {
-  register char *o, *r;
+  char *o, *r;
 
   if (!rest)
     return *rest = "";

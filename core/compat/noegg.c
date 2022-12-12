@@ -11,7 +11,7 @@ static void nputlog(char *s, ...)
 
 char *newsplit(char **rest)
 {
-  register char *o, *r;
+  char *o, *r;
 
   if (!rest)
     return *rest = "";

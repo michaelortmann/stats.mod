@@ -174,7 +174,7 @@ static int ismonday()
  */
 static void maskstricthost(const char *s, char *nw)
 {
-  register const char *p, *q, *e, *f;
+  const char *p, *q, *e, *f;
   int i;
 
   *nw++ = '*';
