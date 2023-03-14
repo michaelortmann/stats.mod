@@ -39,11 +39,9 @@ static void init_templates()
  */
 static void unload_templates()
 {
-  Context;
   templates_skin_free(skins);
   templates_commands_list_free(glob_tpl_cmd_list);
   skins = NULL;
-  Context;
 }
 
 /* expmem_templates():
@@ -54,10 +52,8 @@ static int expmem_templates()
 {
   int size = 0;
 
-  Context;
   size += templates_skin_expmem(skins);
   size += templates_commands_list_expmem(glob_tpl_cmd_list);
-  Context;
   return size;
 }
 */

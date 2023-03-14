@@ -213,7 +213,6 @@ static char *tell_top_word(char *chan, char *word, int range, globstats *gs)
   char buf[100], *slang;
   int num, itype;
 
-  Context;
   Assert(!stats_pubcmd_reply);
 
   word = newsplit(&word);
@@ -252,7 +251,6 @@ static char *tell_top_word(char *chan, char *word, int range, globstats *gs)
       strcat(stats_pubcmd_reply, buf);
     }
   }
-  Context;
   return stats_pubcmd_reply;
 }
 
@@ -261,7 +259,6 @@ static int pub_place(char *nick, char *host, char *hand,
 {
   char *reply;
 
-  Context;
   if (nopubstats(channel))
     return 1;
   if (stat_flood())
@@ -275,7 +272,6 @@ static int pub_place(char *nick, char *host, char *hand,
   }
 
 
-  Context;
   return 1;
 }
 
@@ -291,7 +287,6 @@ static char *tell_place(char *nick, char *hand, char *channel, char *text)
   int itmp;
   int today;
 
-  Context;
   // at first, check for flood...
   reset_global_vars();
   glob_slang = slang_find(coreslangs, slang_chanlang_get(chanlangs, channel));
@@ -377,7 +372,6 @@ static char *tell_place(char *nick, char *hand, char *channel, char *text)
     // there are 4 slang-entries for today, this week, etc
     return getslang(200 + today);
   }
-  Context;
 }
 
 static int pub_stat(char *nick, char *host, char *hand,
@@ -385,7 +379,6 @@ static int pub_stat(char *nick, char *host, char *hand,
 {
   char *reply;
 
-  Context;
   if (stat_flood())
     return 0;
   if (nopubstats(channel))
@@ -397,7 +390,6 @@ static int pub_stat(char *nick, char *host, char *hand,
     dprintf(DP_HELP, "NOTICE %s :%s\n", nick, reply);
   else
     dprintf(DP_HELP, "PRIVMSG %s :%s\n", channel, reply);
-  Context;
   return 1;
 }
 
@@ -418,7 +410,6 @@ static char *tell_stat(char *nick, char *channel, char *text)
   struct stats_member *member;
   locstats *ls;
 
-  Context;
   if (stats_pubcmd_reply) {
     nfree(stats_pubcmd_reply);
     stats_pubcmd_reply = NULL;
@@ -469,10 +460,8 @@ static char *tell_stat(char *nick, char *channel, char *text)
     nfree(tosend);
     return SLNOSTATSABOUTSOMEONE;
   } else {
-    what[0] = 0;
     pwhat = what;
-    strncpy(pwhat, stat_reply, 127);
-    pwhat[127] = 0;
+    strlcpy(pwhat, stat_reply, sizeof pwhat);
     first = 1;
     while (strlen(pwhat) > 0) {
       type = newsplit(&pwhat);
@@ -519,12 +508,10 @@ static char *tell_stat(char *nick, char *channel, char *text)
 static int pub_wordstats(char *nick, char *host, char *hand,
         char *channel, char *text)
 {
-  Context;
   if (nopubstats(channel))
     return 1;
   putlog(LOG_CMDS, channel, "<<%s>> !%s! wordstats %s", nick, hand, text);
   tell_wordstats(nick, channel, hand, channel, text);
-  Context;
   return 0;
 }
 
@@ -539,7 +526,6 @@ static void tell_wordstats(char *nick, char *dest, char *hand, char *channel, ch
 #endif
 
 
-  Context;
   reset_global_vars();
   glob_slang = slang_find(coreslangs, slang_chanlang_get(chanlangs, channel));
   if (stat_flood())
@@ -605,18 +591,15 @@ static void tell_wordstats(char *nick, char *dest, char *hand, char *channel, ch
     }
   }
   nfree(who);
-  Context;
 }
 
 static int pub_topwords(char *nick, char *host, char *hand,
         char *channel, char *text)
 {
-  Context;
   if (nopubstats(channel))
     return 1;
   putlog(LOG_CMDS, channel, "<<%s>> !%s! topwords %s", nick, hand, text);
   tell_topwords(nick, channel, hand, channel);
-  Context;
   return 0;
 }
 
@@ -630,7 +613,6 @@ static void tell_topwords(char *nick, char *dest, char *hand, char *channel)
   struct chanset_t *chan;
 #endif
 
-  Context;
   if (stat_flood())
     return;
   reset_global_vars();
@@ -674,7 +656,6 @@ static void tell_topwords(char *nick, char *dest, char *hand, char *channel)
   }
   dprintf(DP_HELP, "%s\n", tosend);
   nfree(tosend);
-  Context;
 }
 
 static char *cmd_lastspoke(char *chan, char *text)
@@ -710,7 +691,6 @@ static int pub_lastspoke(char *nick, char *host, char *hand,
 {
   char *reply;
 
-  Context;
   if (nopubstats(channel))
     return 1;
   if (stat_flood())
@@ -722,7 +702,6 @@ static int pub_lastspoke(char *nick, char *host, char *hand,
   } else {
     dprintf(DP_HELP, "PRIVMSG %s :%s\n", channel, reply);
   }
-  Context;
   return 1;
 }
 

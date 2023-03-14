@@ -57,7 +57,6 @@ static struct template_content *templates_content_load(char *filename)
   char buf[TEMPLATE_LINE_LENGTH + 1], *contentstring;
   struct template_content *content;
 
-  Context;
   // at first, load the whole file into a buffer
   f = fopen(filename, "r");
   if (f == NULL) {
@@ -124,7 +123,6 @@ static struct template_content *templates_content_parse(char *buf)
   int need_end_tag;
   struct template_content *content;
 
-  Context;
   content = NULL;
   while ((s = strstr(buf, "<?"))) {
     // initialize variables

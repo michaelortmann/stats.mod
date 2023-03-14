@@ -35,7 +35,6 @@ static int msg_place(char *nick, char *uhost, struct userrec *u,
 {
   char *chan, *reply;
 
-  Context;
   // check for flood
   if (stat_flood())
     return 1;
@@ -58,7 +57,6 @@ static int msg_stat(char *nick, char *uhost, struct userrec *u,
 {
   char *chan;
 
-  Context;
   // check for flood
   if (stat_flood())
     return 1;
@@ -80,7 +78,6 @@ static int msg_top(char *nick, char *uhost, struct userrec *u,
 {
   char *chan, *toptext;
 
-  Context;
   // check for flood
   if (stat_flood())
     return 1;
@@ -103,7 +100,6 @@ static int msg_last(char *nick, char *uhost, struct userrec *u,
 {
   char *chan, *toptext;
 
-  Context;
   // check for flood
   if (stat_flood())
     return 1;
@@ -126,7 +122,6 @@ static int msg_wordstats(char *nick, char *uhost, struct userrec *u,
 {
   char *chan;
 
-  Context;
   // check for flood
   if (stat_flood())
     return 1;
@@ -146,7 +141,6 @@ static int msg_topwords(char *nick, char *uhost, struct userrec *u,
 {
   char *chan;
 
-  Context;
   // check for flood
   if (stat_flood())
     return 1;
@@ -202,7 +196,6 @@ static int msg_lastspoke(char *nick, char *uhost, struct userrec *u,
   char *chan, *reply;
   globstats gs;
 
-  Context;
   // check for flood
   if (stat_flood())
     return 1;

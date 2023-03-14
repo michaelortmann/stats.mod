@@ -24,7 +24,6 @@ static struct stats_userlist *findsuser(char *host)
   struct stats_hostlist *h, *h2;
   int len = 0;
 
-  Context;
   u = NULL;
   h2 = NULL;
   for (user = suserlist; user; user = user->next) {
@@ -50,7 +49,6 @@ static struct stats_userlist *findsuser_by_name(char *user)
 {
   struct stats_userlist *u;
 
-  Context;
   for (u = suserlist; u; u = u->next)
     if (!rfc_casecmp(u->user, user))
       return u;
@@ -61,7 +59,6 @@ static struct stats_userlist *addsuser(char *user, time_t created, time_t laston
 {
   struct stats_userlist *u, *nu;
 
-  Context;
   for (u = suserlist; u; u = u->next)
     if (!rfc_casecmp(u->user, user))
       return u;
@@ -84,7 +81,6 @@ static void delsuser(char *user)
 {
   struct stats_userlist *u, *lu;
 
-  Context;
   debug1("Deleting %s...", user);
   u = suserlist;
   lu = NULL;
@@ -166,7 +162,6 @@ static void saddhost(struct stats_userlist *u, char *host, time_t lastused, time
 {
   struct stats_hostlist *h, *nh;
 
-  Context;
   for (h = u->hosts; h; h = h->next)
     if (!rfc_casecmp(h->mask, host))
       return;
@@ -189,7 +184,6 @@ static int sdelhost(struct stats_userlist *u, char *host)
 {
   struct stats_hostlist *h, *lh;
 
-  Context;
   h = u->hosts;
   lh = NULL;
   while (h) {
@@ -214,7 +208,6 @@ static void stats_autosadd(struct stats_member *m, struct stats_chan *chan)
   struct userrec *uu;
   char *mhost, *host;
 
-  Context;
   if (autoadd < 0)
     return;
   if (m->spoken_lines < autoadd_min_lines)
@@ -300,7 +293,6 @@ static int countsusers()
   static struct stats_userlist *u;
   int users = 0;
 
-  Context;
   for (u = suserlist; u; u = u->next)
     users++;
   return users;
@@ -312,7 +304,6 @@ static int counthosts()
   static struct stats_hostlist *h;
   int hosts = 0;
 
-  Context;
   for (u = suserlist; u; u = u->next)
     for (h = u->hosts; h; h = h->next)
       hosts++;
@@ -324,7 +315,6 @@ static void weed_userlink_from_chanset(struct stats_userlist *u)
   struct stats_chan *chan;
   struct stats_member *m;
 
-  Context;
   for (chan = schan_getfirst(); chan; chan = schan_getnext()) {
     for (m = schan_members_getfirst(&chan->members); m; m = schan_members_getnext(&chan->members)) {
       if (m->user == u) {
@@ -340,7 +330,6 @@ static void weed_statlink_from_chanset(locstats *ls)
   struct stats_chan *chan;
   struct stats_member *m;
 
-  Context;
   for (chan = schan_getfirst(); chan; chan = schan_getnext()) {
     for (m = schan_members_getfirst(&chan->members); m; m = schan_members_getnext(&chan->members)) {
       if (m->stats == ls) {
@@ -359,12 +348,10 @@ static void weed_userlink_from_locstats(struct stats_userlist *u)
   globstats *gs;
   locstats *ls;
 
-  Context;
   for (gs = sdata; gs; gs = gs->next)
     for (ls = gs->local; ls; ls = ls->next)
       if (ls->u == u)
         ls->u = NULL;
-  Context;
 }
 
 
@@ -493,7 +480,6 @@ static void free_suserlist(struct stats_userlist *e)
 {
   struct stats_userlist *ee;
 
-  Context;
   while (e) {
     ee = e->next;
     stats_userlist_free_entry(e);
@@ -505,7 +491,6 @@ static void free_hostlist(struct stats_hostlist *e)
 {
   struct stats_hostlist *ee;
 
-  Context;
   while (e) {
     ee = e->next;
     nfree(e->mask);

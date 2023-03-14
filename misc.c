@@ -23,7 +23,6 @@ static int countactivestatmembers_by_word(globstats *gs, int listable, int min)
   int members = 0;
   locstats *ls;
 
-  Context;
   for (ls = gs->local; ls; ls = ls->next) {
     if (listable && !listsuser(ls, gs->chan))
       continue;

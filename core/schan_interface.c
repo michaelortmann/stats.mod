@@ -67,7 +67,6 @@ static void update_schannel_members()
 	struct stats_chan *chan;
 	struct stats_member *m;
 
-	Context;
 	for (chan = schan_getfirst(); chan; chan = schan_getnext())
 		for (m = schan_members_getfirst(&chan->members); m; m = schan_members_getnext(&chan->members))
 			schan_members_update(m, chan->chan);

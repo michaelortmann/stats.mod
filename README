@@ -15,25 +15,24 @@ and via http.
 Installation:
 -------------
 
-Stats.mod will work with eggdrop1.6.x and eggdrop1.4.x.
+Stats.mod should work with eggdrop 1.8.4 and newer.
 
-The following instructions assume, ~/eggdrop1.6/ is the directory
+The following instructions assume, ~/eggdrop-1.9.5/ is the directory
 where you installed your eggdrop from. (of course, other source dirs
 will work as well)
 Unfortunately, you need to compile stats.mod within your eggdrop source,
 so if you removed your original compile directory, you'll have to
 compile the whole bot again... sorry.
 
-Put stats.mod.1.4.1.tar.gz in ~/eggdrop1.6/src/mod/,
-and unpack it (tar xfz stats.mod.1.4.1.tar.gz). Change directory
-back to ~/eggdrop1.6/. Type 'make config' (on eggdrop 1.4, you can skip
-that part) Type 'make', wait until compiling
+Put stats.mod.1.7.tar.gz in ~/eggdrop-1.9.5/src/mod/,
+and unpack it (tar xfz stats.mod-1.7.tar.gz). Change directory
+back to ~/eggdrop-1.9.5/. Type 'make config'. Type 'make', wait until compiling
 is done and use 'make install' to install the bot and stats.mod.
 
-Don't forget to copy the language files from ~/eggdrop1.6/src/mod/stats.mod/ to
-~/eggdrop/language/ !
+Don't forget to copy the language files from ~/eggdrop-1.9.5/src/mod/stats.mod/
+to ~/eggdrop/language/ !
 
-All settings can be found in ~/eggdrop1.6/src/mod/stats.mod/stats.conf
+All settings can be found in ~/eggdrop-1.9.5/src/mod/stats.mod/stats.conf
 I suggest to copy it to your eggdrop directory (probably ~/eggdrop/),
 edit it to fit your needs and put a 'source stats.conf' at the end of
 your eggdrop config file. This will execute the config file with every
@@ -219,6 +218,7 @@ Known problems:
 
 There can be a problem if you use wordstats on a bot with enabled memory
 debugging. The reset of the daily stats might take a long time on slow shells.
+Since eggdrop 1.9.0 MEMTBLSIZE is dynamic, but for older bots:
 If your bot is on big channels, your memory table might be too small.
 Edit src/mem.c and change the #define that sets the size of the memtable
 (#define MEMTBLSIZE 25000      /* yikes! */) to a higher value.
@@ -226,7 +226,8 @@ Edit src/mem.c and change the #define that sets the size of the memtable
 Homepage:
 ---------
 
-http://www.kreativrauschen.com/stats.mod/
+https://www.kreativrauschen.com/stats.mod/ and
+https://github.com/michaelortmann/stats.mod
 
 
 Thanks to:

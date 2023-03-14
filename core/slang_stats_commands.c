@@ -1,4 +1,3 @@
-
 static void slang_send_nick()
 {
   if (glob_nick)
@@ -48,14 +47,12 @@ static void slang_send_totalusers()
 
 static void slang_send_chanstarted()
 {
-  time_t tt, ttbuf;
+  time_t tt;
   char sbuf[61];
 
   if (glob_globstats) {
-    ttbuf = now;
     tt = glob_globstats->started;
     strftime(sbuf, 60, "%d.%m. %Y  %H:%M", localtime(&tt));
-    ctime(&ttbuf); /* workaround for eggdrop bug */
     strncat(slang_text_buf, sbuf, sizeof(slang_text_buf));
   }
 }
@@ -232,7 +229,7 @@ static void slang_send_random_kicks()
 static void slang_send_chanwords()
 {
   static wordstats *ws;
-  char buf[6];
+  char buf[11];
   int nr = 0;
 
   if (!glob_globstats)
@@ -247,7 +244,7 @@ static void slang_send_chanwords()
 static void slang_send_userwords()
 {
   wordstats *ws;
-  char buf[6];
+  char buf[11];
   int nr = 0;
 
   if (!glob_locstats)

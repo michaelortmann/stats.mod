@@ -22,7 +22,6 @@ static void sortstats(struct stats_global *gs, int itype, int today)
   struct stats_local *last, *p, *c, *n;
   int a, b, pitype;
 
-  Context;
   Assert(gs);
   again = 1;
   last = NULL;
@@ -77,7 +76,6 @@ static void sortstats(struct stats_global *gs, int itype, int today)
     }
     last = c;
   }
-  Context;
   return;
 }
 
@@ -87,7 +85,6 @@ static void sortstats_wpl(struct stats_global *gs, int today)
   struct stats_local *last, *p, *c, *n;
   int a, b, pitype;
 
-  Context;
   again = 1;
   last = NULL;
   pitype = (T_WPL * (-1)) + TOTAL_TYPES - 1;
@@ -124,7 +121,6 @@ static void sortstats_wpl(struct stats_global *gs, int today)
     }
     last = c;
   }
-  Context;
   return;
 }
 
@@ -134,7 +130,6 @@ static void sortstats_vocables(struct stats_global *gs, int today)
   struct stats_local *last, *p, *c, *n;
   int a, b, pitype;
 
-  Context;
   again = 1;
   last = NULL;
   countvocables(gs);
@@ -166,7 +161,6 @@ static void sortstats_vocables(struct stats_global *gs, int today)
     }
     last = c;
   }
-  Context;
   return;
 }
 
@@ -176,7 +170,6 @@ static void sortstats_word(struct stats_global *gs, int today)
   struct stats_local *last, *p, *c, *n;
   int a, b, pitype;
 
-  Context;
   debug1("sortstats_word: today == %d", today);
   again = 1;
   last = NULL;
@@ -215,7 +208,6 @@ static void sortstats_word(struct stats_global *gs, int today)
     }
     last = c;
   }
-  Context;
   return;
 }
 
@@ -226,7 +218,6 @@ static void sortstats_idle(struct stats_global *gs, int today)
   struct stats_local *last, *p, *c, *n;
   int a, b, pitype;
 
-  Context;
   again = 1;
   last = NULL;
   pitype = (T_IDLE * (-1)) + TOTAL_TYPES - 1;
@@ -263,7 +254,6 @@ static void sortstats_idle(struct stats_global *gs, int today)
     }
     last = c;
   }
-  Context;
   return;
 }
 
@@ -273,7 +263,6 @@ static void sortwordstats(locstats *ls, globstats *gs)
   wordstats *last, *p, *c, *n, *tmp;
   int a, b;
 
-  Context;
   again = 1;
   last = NULL;
   if (ls)
@@ -314,7 +303,6 @@ static void sortwordstats(locstats *ls, globstats *gs)
     }
     last = c;
   }
-  Context;
   return;
 }
 
@@ -324,7 +312,6 @@ static void sorthosts(struct stats_global *gs)
   hoststr *last, *p, *c, *n;
   int a, b;
 
-  Context;
   again = 1;
   last = NULL;
   while ((gs->hosts != last) && (again)) {
@@ -354,7 +341,6 @@ static void sorthosts(struct stats_global *gs)
     }
     last = c;
   }
-  Context;
   return;
 }
 
@@ -364,7 +350,6 @@ static void sort_stats_alphabetically(globstats *gs)
   int a, b, again = 1;
   char *astr, *bstr, n[2];
 
-  Context;
   n[0] = n[1] = 0;
   last = NULL;
   while ((gs->local != last) && again) {
@@ -408,5 +393,4 @@ static void sort_stats_alphabetically(globstats *gs)
     }
     last = as;
   }
-  Context;
 }

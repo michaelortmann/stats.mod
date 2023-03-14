@@ -152,7 +152,6 @@ static void start_httpd(int port)
   char tmp[INET_ADDRSTRLEN + sizeof "set listen-addr ;"];
 #endif
 
-  Context;
   // a little hack to make httpd listen on the defined vhost
   // (or on all vhosts, if none is defined)
   // Just set listen-addr to the wanted vhost, since open_listen()
@@ -241,7 +240,6 @@ static int expmem_http(void *x)
   struct http_connection_data *p = (struct http_connection_data *) x;
   int tot = 0;
 
-  Context;
   if (!p) {
     putlog(LOG_MISC, "*", "Can't expmem clientinfo, no pointer. This should not happen!");
     return 0;
@@ -552,9 +550,7 @@ static void kill_http(int idx, void *x)
   time_t tt;
   FILE *f;
 
-  Context;
   tt = now;
-  ctime(&tt);
   /* 05/Feb/2000:12:08:17 +0100 */
   strftime(test, 19, "%z", localtime(&tt));
   // if test contains 'z' then strftime() doesn't support
@@ -616,7 +612,6 @@ static void httpd_accept(int idx, char *buf, int len)
   unsigned short port;
   int j = 0, sock, i;
 
-  Context;
   if (dcc_total + 1 > max_dcc && increase_socks_max()) {
     j = answer(dcc[idx].sock, &name, &port, 0);
     if (j != -1) {
@@ -760,7 +755,6 @@ static void process_request(int idx)
   struct timeval t;
   double pre_time;
 
-  Context;
   Assert(idx >= 0);
   debug0("now sending...");
   gettimeofday(&t, NULL);
@@ -944,7 +938,6 @@ static char *decode_url(char *paramurl)
   char *p, *buf, *url, c, hex[5];
   long int i;
 
-  Context;
   // free url-buffer (global var)
   if (httpd_text_buf)
     nfree(httpd_text_buf);
@@ -992,7 +985,6 @@ static char *decode_url(char *paramurl)
   strcat(httpd_text_buf, url);
   // free the buffer
   nfree(buf);
-  Context;
   return httpd_text_buf;
 }
 

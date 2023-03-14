@@ -32,15 +32,10 @@ static int cmd_loadstats(struct userrec *u, int idx, char *par)
 
 static int cmd_purgestats(struct userrec *u, int idx, char *par)
 {
-  Context;
   deloldstatusers();
-  Context;
   purgestats();
-  Context;
   update_schannel_members();
-  Context;
   putlog(LOG_CMDS, "*", "#%s# purgestats", dcc[idx].nick);
-  Context;
   return 0;
 }
 
@@ -49,7 +44,6 @@ static int cmd_sumuser(struct userrec *user, int idx, char *par)
   struct stats_userlist *uu1, *uu2;
   char *user1, *user2;
 
-  Context;
   user1 = newsplit(&par);
   user2 = par;
   uu1 = findsuser_by_name(user1);
@@ -71,7 +65,6 @@ static int cmd_sumuser(struct userrec *user, int idx, char *par)
   	  user1, user2);
   putlog(LOG_CMDS, "*", "#%s# sumuser %s %s", dcc[idx].nick, user1, user2);
   update_schannel_members();
-  Context;
   return 0;
 }
 
@@ -80,7 +73,6 @@ static int cmd_resetuser(struct userrec *u, int idx, char *par)
   char *user, *chan;
   locstats *ls;
 
-  Context;
   user = newsplit(&par);
   chan = newsplit(&par);
   ls = findlocstats(chan, user);
@@ -91,7 +83,6 @@ static int cmd_resetuser(struct userrec *u, int idx, char *par)
   resetlocstats(ls);
   dprintf(idx, "%s's stats set to 0 on %s.\n", ls->user, chan);
   putlog(LOG_CMDS, "*", "#%s# resetuser %s %s", dcc[idx].nick, user, chan);
-  Context;
   return 0;
 }
 
@@ -102,7 +93,6 @@ static int cmd_schannel(struct userrec *u, int idx, char *par)
   struct stats_member *m;
   int len = 0;
 
-  Context;
   ubuf[0] = '*';
   ubuf[1] = 0;
 #if EGG_IS_MIN_VER(10500)
@@ -145,7 +135,6 @@ static int cmd_schannel(struct userrec *u, int idx, char *par)
     spaces[HANDLEN - strlen(user)] = ' ';
     dprintf(idx, "  %s\n", m->uhost);
   }
-  Context;
   return 0;
 }
 
@@ -153,7 +142,6 @@ static int cmd_swhois(struct userrec *user, int idx, char *par)
 {
   struct stats_userlist *u;
 
-  Context;
   glob_slang = slang_find(coreslangs, default_slang);
   if (!par[0]) {
     dprintf(idx, "Usage: .swhois <stats-user>\n");
@@ -196,7 +184,6 @@ static int cmd_pls_shost(struct userrec *user, int idx, char *par)
   char *suser, *host;
   struct stats_userlist *u;
 
-  Context;
   suser = newsplit(&par);
   host = newsplit(&par);
   if (!suser[0] || !host[0]) {
@@ -220,7 +207,6 @@ static int cmd_mns_shost(struct userrec *user, int idx, char *par)
   char *suser, *host;
   struct stats_userlist *u;
 
-  Context;
   suser = newsplit(&par);
   host = newsplit(&par);
   if (!suser[0] || !host[0]) {
@@ -247,7 +233,6 @@ static int cmd_pls_suser(struct userrec *user, int idx, char *par)
   struct stats_userlist *u;
   char *suser, *host;
 
-  Context;
   suser = newsplit(&par);
   host = newsplit(&par);
   if (!suser[0]) {
@@ -275,7 +260,6 @@ static int cmd_mns_suser(struct userrec *user, int idx, char *par)
   struct stats_userlist *u;
   char *suser;
 
-  Context;
   suser = newsplit(&par);
   if (!suser[0]) {
     dprintf(idx, "Usage: .-suser <statuser>\n");
@@ -298,7 +282,6 @@ static int cmd_schattr(struct userrec *user, int idx, char *par)
   struct stats_userlist *u;
   char *suser, *mode;
 
-  Context;
   suser = newsplit(&par);
   if (!suser[0] || !par[0]) {
     dprintf(idx, "Usage: .schattr <statuser> <+/-list +/-addhosts +/-nostats>\n");
@@ -323,7 +306,6 @@ static int cmd_schattr(struct userrec *user, int idx, char *par)
 
 static int cmd_updateschans(struct userrec *user, int idx, char *par)
 {
-  Context;
   putlog(LOG_CMDS, "*", "#%s# updateschans", dcc[idx].nick);
   update_schannel_members();
   return 0;
@@ -336,7 +318,6 @@ static int cmd_smatch(struct userrec *user, int idx, char *par)
   struct stats_userlist *u;
   struct stats_hostlist *h;
 
-  Context;
   mask = NULL;
   list = addhosts = nostats = -1;
   putlog(LOG_CMDS, "*", "#%s# smatch %s", dcc[idx].nick, par);
@@ -416,7 +397,6 @@ static int cmd_chsusername(struct userrec *user, int idx, char *par)
   char *oldnick, *newnick;
   struct stats_userlist *u;
 
-  Context;
   putlog(LOG_CMDS, "*", "#%s# chsusername %s", dcc[idx].nick, par);
   oldnick = newsplit(&par);
   newnick = newsplit(&par);

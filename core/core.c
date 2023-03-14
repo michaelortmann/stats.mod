@@ -51,10 +51,6 @@
 
 #endif
 
-#ifndef Context
-#define Context
-#endif
-
 #include "core/generic_linked_list.c"
 #include "core/llists.c"
 

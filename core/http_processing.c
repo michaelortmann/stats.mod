@@ -35,7 +35,6 @@ static void process_get_request(int idx)
   struct stats_userlist *u;
   struct llist_1string *langlist;
 
-  Context;
   // init all global vars
   reset_global_vars();
   if (!http_connection(idx)->path) {
@@ -43,8 +42,7 @@ static void process_get_request(int idx)
     return;
   }
   // copy the url into a buffer, so we can work on it without messing it up
-  strncpy(urlbuf, http_connection(idx)->path, 512);
-  urlbuf[511] = 0;
+  strlcpy(urlbuf, http_connection(idx)->path, sizeof urlbuf);
   url = urlbuf;
   // make sure there is a '/' at the end of the URL, or most links will
   // be broken.

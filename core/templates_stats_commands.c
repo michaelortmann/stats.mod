@@ -76,7 +76,7 @@ static void template_init_colorfade(int idx, struct template_content *htpc)
 
 /* template_add_cmd_init_colorfade():
  * Parameters: <startcolor> <endcolor> [steps]
- * initialiazes a color-fade from <startcolor> to <endcolor>
+ * initializes a color-fade from <startcolor> to <endcolor>
  * in [steps] steps. (if steps isn't defined, numresults is used)
  */
 static void template_add_cmd_init_colorfade(struct template_content *h_tpc,
@@ -86,7 +86,6 @@ static void template_add_cmd_init_colorfade(struct template_content *h_tpc,
   char *startcolor, *endcolor, *steps;
   float istartcolor, iendcolor, isteps;
 
-  Context;
   startcolor = endcolor = steps = "";
   for (; params; params = params->next) {
     if (!strcasecmp(params->s1, "startcolor"))
@@ -150,7 +149,6 @@ static void template_send_chanlist(int idx, struct template_content *h_tpc)
 {
   globstats *gs;
 
-  Context;
   for (gs = sdata; gs; gs = gs->next) {
 	if (!egg_chan_active(gs->chan))
 	  continue;
@@ -160,7 +158,7 @@ static void template_send_chanlist(int idx, struct template_content *h_tpc)
       continue;
       */
     glob_globstats = gs;
-    debug0("lang für skins nicht vergessen!");
+    debug0("lang fuer skins nicht vergessen!");
     templates_content_send(h_tpc->subcontent, idx);
   }
 }
@@ -258,7 +256,6 @@ static void template_send_topstats(int idx, struct template_content *h_tpc)
 {
   char buf[512], *pbuf;
 
-  Context;
   strncpy(buf, webstats, sizeof(buf));
   pbuf = buf;
   while (pbuf[0]) {
@@ -275,7 +272,6 @@ static void template_send_toplist(int idx, struct template_content *h_tpc)
   locstats *ls;
   int sort;
 
-  Context;
   Assert((glob_timerange >= 0) && (glob_timerange <= 3));
   if (glob_sorting == T_ERROR) {
     dprintf(idx, "<H1>ERROR! Invalid sorting!</H1>");
@@ -285,7 +281,7 @@ static void template_send_toplist(int idx, struct template_content *h_tpc)
     sort = (glob_sorting * -1) + (TOTAL_TYPES - 1);
   else
     sort = glob_sorting;
-  debug0("überprüfen, ob toplist rekursions-fähig ist");
+  debug0("ueberpruefen, ob toplist rekursions-faehig ist");
   glob_place = 0;
   for (ls = glob_globstats->slocal[glob_timerange][sort]; ls; ls = ls->snext[glob_timerange][sort]) {
     if (glob_place > glob_top_end)
@@ -321,7 +317,6 @@ static void template_add_cmd_type(struct template_content *h_tpc,
                                             struct llist_2string *params,
                                             char *included_text)
 {
-  Context;
   for (; params; params = params->next)
     if (!strcasecmp(params->s1, "slang") && !strcasecmp(params->s2, "yes"))
       h_tpc->intpar1 = 1;
@@ -336,7 +331,6 @@ static void template_add_cmd_chan_user(struct template_content *h_tpc,
                                             struct llist_2string *params,
                                             char *included_text)
 {
-  Context;
   for (; params; params = params->next)
     if (!strcasecmp(params->s1, "encode") && !strcasecmp(params->s2, "yes"))
       h_tpc->intpar1 = 1;
@@ -388,7 +382,6 @@ static void template_send_channel_load(int idx, struct template_content *h_tpc)
   float umax, uonep, aonep, f;
   int i, amax;
 
-  Context;
   if (!glob_globstats)
     return;
   umax = 0.0;
@@ -891,7 +884,6 @@ static void template_add_cmd_fact(struct template_content *h_tpc,
 {
   int place;
 
-  Context;
   place = 0;
   for (; params; params = params->next) {
     if (!strcasecmp(params->s1, "place"))
@@ -1056,7 +1048,6 @@ static void template_send_graphstats(int idx, struct template_content *h_tpc)
   char buf[512], *pbuf;
   locstats ls;
 
-  Context;
   if (!glob_globstats || (glob_timerange == T_ERROR))
     return;
   locstats_init(&ls);

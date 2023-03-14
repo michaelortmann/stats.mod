@@ -1,5 +1,19 @@
 Changes in Stats.mod: (since v1.0.1)
 --------------------
+1.7
+- Fix typo
+- Fix stringop-truncation, strncpy() -> strlcpy()
+- Cleanup alloc()
+- Removed Context
+- Fixed heap-buffer-overflow
+- Removed sensors_old.c
+- Removed dead code / deprecated workaround regarding ctime()
+- Removed CVS keyword
+- Fixed umlaut
+- Fixed format-truncation
+- Fixed address
+- Fixed URL
+
 1.6
 - Fixed bool-compare / logical-not-parentheses
 - Fixed return-type

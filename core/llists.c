@@ -28,9 +28,9 @@ static struct llist_2string *llist_2string_add(struct llist_2string *where, char
 
   newitem = (struct llist_2string *) nmalloc(sizeof(struct llist_2string));
   newitem->next = NULL;
-  newitem->s1 = (char *) nmalloc(strlen(s1) + 1);
+  newitem->s1 = nmalloc(strlen(s1) + 1);
   strcpy(newitem->s1, s1);
-  newitem->s2 = (char *) nmalloc(strlen(s2) + 1);
+  newitem->s2 = nmalloc(strlen(s2) + 1);
   strcpy(newitem->s2, s2);
   newitem->next = where;
   return newitem;

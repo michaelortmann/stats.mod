@@ -407,7 +407,6 @@ static void write_stats()
   struct stats_hostlist *h;
   int i;
 
-  Context;
   if (!statsfile[0])
     return;
   sprintf(s, "%s~new", statsfile);
@@ -468,7 +467,6 @@ static void write_stats()
   fclose(f);
   unlink(statsfile);
   movefile(s, statsfile);
-  Context;
   return;
 }
 
@@ -484,7 +482,6 @@ static void read_stats()
   globstats *gs;
   time_t created, laston;
 
-  Context;
   ls = NULL;
   gs = NULL;
   version = 0;
@@ -618,7 +615,6 @@ static void read_stats()
     }
   }
   fclose(f);
-  Context;
   return;
 }
 
@@ -628,7 +624,6 @@ static void reset_tstats()
   locstats *ls;
   int i;
 
-  Context;
   putlog(LOG_MISC, "*", "Stats.mod: Resetting today's statistics...");
   for (gs = sdata; gs; gs = gs->next) {
     gs->peak[S_TODAY] = 0;
@@ -652,7 +647,6 @@ static void reset_tstats()
         ls->values[S_TODAY][i] = 0;
     }
   }
-  Context;
 }
 
 static void reset_mwstats(int range)
@@ -661,7 +655,6 @@ static void reset_mwstats(int range)
   locstats *ls;
   int i;
 
-  Context;
   putlog(LOG_MISC, "*", "Stats.mod: Resetting %s statistics...", (range == S_WEEKLY) ? "weekly" : "monthly");
   for (gs = sdata; gs; gs = gs->next) {
     gs->peak[range] = 0;
@@ -670,7 +663,6 @@ static void reset_mwstats(int range)
         ls->values[range][i] = 0;
     }
   }
-  Context;
 }
 
 static void resetlocstats(locstats *ls)
@@ -695,7 +687,6 @@ static void calcwordstats(locstats *stats, char *text)
   char *word;
   int i;
 
-  Context;
   Assert(stats);
   if (!log_wordstats)
     return;
@@ -716,7 +707,6 @@ static void incrwordstats(locstats *ls, char *word, int value, int set)
   wordstats *ll;
   int cmp;
 
-  Context;
   if ((word[0] == ' ') || !word[0])
     return;
   if (min_word_length && (strlen(word) < min_word_length))
@@ -840,7 +830,6 @@ static void addtopic(char *channel, char *topic, char *by)
   topicstr *e, *ne;
   globstats *gs;
 
-  Context;
   gs = findglobstats(channel);
   if (!gs)
     return;
@@ -919,7 +908,6 @@ static int track_stat_user(char *oldnick, char *newnick)
   struct stats_userlist *u;
   int found = 0;
 
-  Context;
   for (gs = sdata; gs; gs = gs->next) {
     for (ls = gs->local; ls; ls = ls->next) {
       if (!rfc_casecmp(oldnick, ls->user) && strcmp(newnick, ls->user)) {
@@ -1037,14 +1025,14 @@ static void check_for_url(char *user, char *chan, char *text)
 static void add_chanlog(globstats *gs, char *nick, char *text, int type)
 {
   char ts[20];
-  time_t tt, ttbuf;
+  time_t tt;
   quotestr *newlog, *l;
 
   if (!gs || (kick_context < 1))
     return;
   Assert(nick);
   Assert(text);
-  ttbuf = tt = now;
+  tt = now;
   strftime(ts, 19, "[%H:%M:%S]", localtime(&tt));
   newlog = nmalloc(sizeof(quotestr));
   newlog->next = NULL;
@@ -1090,7 +1078,6 @@ static void add_chanlog(globstats *gs, char *nick, char *text, int type)
     gs->log = l;
     gs->log_length--;
   }
-  ctime(&ttbuf); /* workaround for a bug in older eggdrops */
 }
 
 static void save_kick(globstats *gs, char *kick)
@@ -1098,7 +1085,6 @@ static void save_kick(globstats *gs, char *kick)
   struct stats_kick *k, *nk;
   quotestr *log, *l, *nl;
 
-  Context;
   if (!gs)
     return;
   for (k = gs->kicks; k && k->next; k = k->next);
@@ -1154,7 +1140,6 @@ static int countstatmembers(globstats *gs)
   int members = 0;
   locstats *ls;
 
-  Context;
   for (ls = gs->local; ls; ls = ls->next) {
     if (listsuser(ls, gs->chan))
       members++;
@@ -1167,7 +1152,6 @@ static int countallstatmembers(globstats *gs)
   int members = 0;
   locstats *ls;
 
-  Context;
   for (ls = gs->local; ls; ls = ls->next)
       members++;
   return members;
@@ -1181,7 +1165,6 @@ static int countactivestatmembers(globstats *gs, int listable, int today, int ty
   int members = 0;
   locstats *ls;
 
-  Context;
   for (ls = gs->local; ls; ls = ls->next) {
     if (ls->values[today][type] < min)
       continue;
@@ -1211,7 +1194,6 @@ static void free_stats()
 {
   struct stats_global *sl;
 
-  Context;
   while (sdata) {
     sl = sdata->next;
     free_localstats(sdata->local);
@@ -1231,7 +1213,6 @@ static void free_stats()
   free_suserlist(suserlist);
   suserlist = NULL;
   slang_glob_free();
-  Context;
   return;
 }
 
@@ -1239,18 +1220,14 @@ static void free_localstats(struct stats_local *sl)
 {
   struct stats_local *sll;
 
-  Context;
   while (sl) {
-    Context;
     sll = sl->next;
     free_wordstats(sl->words);
     free_quotes(sl->quotes);
     nfree(sl->user);
     nfree(sl);
     sl = sll;
-    Context;
   }
-  Context;
   return;
 }
 
@@ -1258,7 +1235,6 @@ static void free_wordstats(wordstats *l)
 {
   wordstats *ll;
 
-  Context;
   while (l) {
     ll = l->next;
     nfree(l->word);
@@ -1272,7 +1248,6 @@ static void free_quotes(quotestr *l)
 {
   quotestr *ll;
 
-  Context;
   while (l) {
     ll = l->next;
     nfree(l->quote);
@@ -1286,7 +1261,6 @@ static void free_topics(topicstr *e)
 {
   topicstr *ee;
 
-  Context;
   while (e) {
     ee = e->next;
     nfree(e->topic);
@@ -1301,7 +1275,6 @@ static void free_urls(struct stats_url *e)
 {
   struct stats_url *ee;
 
-  Context;
   while (e) {
     ee = e->next;
     nfree(e->url);
@@ -1316,7 +1289,6 @@ static void free_kicks(struct stats_kick *e)
 {
   struct stats_kick *ee;
 
-  Context;
   while (e) {
     ee = e->next;
     free_quotes(e->log);
@@ -1329,7 +1301,6 @@ static void free_hosts(hoststr *e)
 {
   hoststr *ee;
 
-  Context;
   while (e) {
     ee = e->next;
     nfree(e->host);

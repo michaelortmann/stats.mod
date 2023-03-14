@@ -31,7 +31,7 @@
 
 #define MAKING_STATS
 #define MODULE_NAME "stats"
-#define MODULE_VERSION "1.6"
+#define MODULE_VERSION "1.7"
 #ifndef NO_EGG
 #include "../module.h"
 #include "../irc.mod/irc.h"
@@ -60,10 +60,6 @@ static Function *global = NULL, *irc_funcs = NULL, *server_funcs = NULL, *channe
 
 #if !EGG_IS_MIN_VER(10500)
 #define OLDBOT 1
-#endif
-
-#ifndef Context
-#define Context context
 #endif
 
 #ifndef findchan_by_dname
@@ -117,12 +113,10 @@ static int stats_expmem()
 {
   int size = 0;
 
-  Context;
 #ifdef DYNAMIC_MEM_DEBUG
   return 0;
 #endif
   size += stats_globstats_expmem(sdata);
-  Context;
   size += suserlist_expmem(suserlist);
   size += llist_expmem(&schanset);
   size += expmem_templates();
@@ -159,7 +153,6 @@ static int suserlist_expmem(struct stats_userlist *e)
 {
   int size = 0;
 
-  Context;
   while (e) {
     size += stats_userlist_expmem_entry(e);
     e = e->next;
@@ -171,7 +164,6 @@ static int hostlist_expmem(struct stats_hostlist *e)
 {
   int size = 0;
 
-  Context;
   while (e) {
     size += sizeof(struct stats_hostlist);
     size += strlen(e->mask) + 1;
@@ -184,7 +176,6 @@ static int localstats_expmem(struct stats_local *sl)
 {
   int size = 0;
 
-  Context;
   while (sl) {
     size += sizeof(struct stats_local);
     size += strlen(sl->user) + 1;
@@ -192,7 +183,6 @@ static int localstats_expmem(struct stats_local *sl)
     size += quotes_expmem(sl->quotes);
     sl = sl->next;
   }
-  Context;
   return size;
 }
 
@@ -200,7 +190,6 @@ static int wordstats_expmem(wordstats *l)
 {
   int size = 0;
 
-  Context;
   while (l) {
     size += strlen(l->word) + 1;
     size += sizeof(wordstats);
@@ -213,7 +202,6 @@ static int quotes_expmem(quotestr *l)
 {
   int size = 0;
 
-  Context;
   while (l) {
     size += strlen(l->quote) + 1;
     size += sizeof(quotestr);
@@ -226,7 +214,6 @@ static int topics_expmem(topicstr *e)
 {
   int size = 0;
 
-  Context;
   while (e) {
     size += strlen(e->topic) + 1;
     size += strlen(e->by) + 1;
@@ -240,7 +227,6 @@ static int urls_expmem(struct stats_url *e)
 {
   int size = 0;
 
-  Context;
   while (e) {
     size += strlen(e->url) + 1;
     size += strlen(e->by) + 1;
@@ -254,7 +240,6 @@ static int kicks_expmem(struct stats_kick *e)
 {
   int size = 0;
 
-  Context;
   while (e) {
     size += sizeof(struct stats_kick);
     size += quotes_expmem(e->log);
@@ -267,7 +252,6 @@ static int hosts_expmem(hoststr *e)
 {
   int size = 0;
 
-  Context;
   while (e) {
     size += strlen(e->host) + 1;
     size += sizeof(hoststr);
@@ -288,7 +272,6 @@ static void stats_report(int idx, int details)
 //  int memtotal, memusers, memchans, memtemplates, memslang, memdata;
   int users, hosts;
 
-  Context;
   users = countsusers();
   hosts = counthosts();
   if (!details)
@@ -322,7 +305,6 @@ static void stats_minutely ()
 
 static void stats_daily ()
 {
-  Context;
   deloldstatusers();
   purgestats();
   reset_tstats();
@@ -333,7 +315,6 @@ static void stats_daily ()
   if (ismonday())
     reset_mwstats(S_WEEKLY);
   update_schannel_members();
-  Context;
 }
 
 static tcl_ints my_tcl_ints[] =
@@ -403,7 +384,6 @@ static tcl_coups my_tcl_coups[] =
 
 static char *stats_close()
 {
-  Context;
   stats_core_unload();
   unload_httpd();
   unload_templates();
@@ -453,7 +433,6 @@ static Function stats_table[] =
 char *stats_start(Function * global_funcs)
 {
   global = global_funcs;
-  Context;
 #ifndef NO_MEM_DEBUG
   dmd_init();
 #endif
@@ -466,8 +445,7 @@ char *stats_start(Function * global_funcs)
 
   chanlangs = NULL;
   slang_glob_init();
-  Context;
-  module_register(MODULE_NAME, stats_table, 1, 6);
+  module_register(MODULE_NAME, stats_table, 1, 7);
   if (!(irc_funcs = module_depend(MODULE_NAME, "irc", 1, 0)))
     return "You need the irc module to use the stats module.";
   if (!(server_funcs = module_depend(MODULE_NAME, "server", 1, 0)))

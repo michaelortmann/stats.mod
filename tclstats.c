@@ -20,7 +20,6 @@ static int tcl_incrstats STDVAR
 {
   int set, type;
 
-  Context;
   BADARGS(5, 6, " user chan type value ?set?");
   if (argc == 6)
     set = atoi(argv[5]);
@@ -32,7 +31,6 @@ static int tcl_incrstats STDVAR
     return TCL_ERROR;
   }
   incrstats(argv[1], argv[2], type, atoi(argv[4]), set);
-  Context;
   return TCL_OK;
 }
 
@@ -41,7 +39,6 @@ static int tcl_getstats STDVAR
   char s[30];
   int today = 0;
 
-  Context;
   BADARGS(4, 5, " user chan type ?today?");
   if (typetoi(argv[3]) < 0) {
     Tcl_AppendResult(irp, "invalid type", NULL);
@@ -55,7 +52,6 @@ static int tcl_getstats STDVAR
   }
   sprintf(s, "%d", getstats(argv[1], argv[2], argv[3], today));
   Tcl_AppendResult(irp, s, NULL);
-  Context;
   return TCL_OK;
 }
 
@@ -63,7 +59,6 @@ static int tcl_livestats STDVAR
 {
   int port;
 
-  Context;
   BADARGS(2, 2, " port");
   if (!strcasecmp(argv[1], "off") || !strcasecmp(argv[1], "0")) {
     stop_httpd();
@@ -83,7 +78,6 @@ static int tcl_resetuser STDVAR
   char *user, *chan;
   locstats *ls;
 
-  Context;
   BADARGS(3, 3, " user channel");
   user = argv[1];
   chan = argv[2];
@@ -98,7 +92,6 @@ static int tcl_resetuser STDVAR
 
 static int tcl_resetslang STDVAR
 {
-  Context;
   slang_free(coreslangs);
   coreslangs = NULL;
   return TCL_OK;
@@ -106,7 +99,6 @@ static int tcl_resetslang STDVAR
 
 static int tcl_getslang STDVAR
 {
-  Context;
   BADARGS(2, 2, " ID");
   Tcl_AppendResult(irp, getslang(atoi(argv[1])), NULL);
   return TCL_OK;
@@ -116,7 +108,6 @@ static int tcl_nick2suser STDVAR
 {
   struct stats_member *m;
 
-  Context;
   BADARGS(3, 3, " nick channel");
   m = getschanmember(argv[1], argv[2]);
   if (m && m->user)
@@ -131,7 +122,6 @@ static int tcl_findsuser STDVAR
   struct stats_userlist *u;
   struct userrec *ou;
 
-  Context;
   BADARGS(2, 2, " nick!user@host");
   ou = get_user_by_host(argv[1]);
   if (ou)
@@ -150,7 +140,6 @@ static int tcl_loadstatsskin STDVAR
 {
 //  char *name, *file, *skin, *lang;
 
-  Context;
   BADARGS(2, 2, " skinfile");
   if (!loadskin(argv[1])) {
     Tcl_AppendResult(irp, "Couldn't load skin!!!", NULL);
@@ -162,7 +151,6 @@ static int tcl_loadstatsskin STDVAR
 
 static int tcl_setchanslang STDVAR
 {
-  Context;
   BADARGS(3, 3, " channel language");
   chanlangs = slang_chanlang_add(chanlangs, argv[1], argv[2]);
   return TCL_OK;
@@ -174,7 +162,6 @@ static int tcl_loadstatslang STDVAR
   char *shortname, *longname, *filename;
   struct slang_header *slang;
 
-  Context;
   BADARGS(4, 4, " language description langfile");
   shortname = argv[1];
   longname = argv[2];

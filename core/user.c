@@ -19,7 +19,6 @@
 static int stats_checkhand(char *oldnick, char *newnick)
 {
 
-	Context;
 	if (findsuser_by_name(newnick)) {
 		putlog(LOG_MISC, "*", "Stats.mod: %s changed handle to %s which already "
 				"existed in the database. The datasets have been merged.",
@@ -33,7 +32,6 @@ static int stats_checkhand(char *oldnick, char *newnick)
 		else
 			putlog(LOG_MISC, "*", "Stats.mod: Transfer from %s to %s failed!", oldnick, newnick);
 	}
-	Context;
 	return 1;
 }
 
@@ -115,7 +113,6 @@ static void purgestats()
 	struct userrec *u2;
 	struct stats_chan *chan;
 
-	Context;
 	gs = sdata;
 	gs2 = NULL;
 	while (gs) {
@@ -213,5 +210,4 @@ static void purgestats()
 				gs = sdata;
 		}
 	}
-	Context;
 }

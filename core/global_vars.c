@@ -81,5 +81,4 @@ static void reset_global_vars()
 
 static void free_global_vars()
 {
-  Context;
 }

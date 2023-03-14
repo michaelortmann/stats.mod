@@ -76,7 +76,6 @@ static void sensor_topic(char *nick, struct stats_chan *chan, char *topic)
 {
 	struct stats_member *m;
 
-	Context;
 	Assert(chan);
 	if (nostats(chan->chan))
 		return;
@@ -219,7 +218,6 @@ static void sensor_minutely()
 	int nr, hour;
 	globstats *gs;
 
-	Context;
 	for (chan = schan_getfirst(); chan; chan = schan_getnext()) {
 		if (nostats(chan->chan))
 			continue;
