@@ -113,13 +113,6 @@
 #define SLEMAIL		getslang(450)
 #define SLHOMEPAGE	getslang(451)
 
-#define SLUSERTITLE	getslang(500)
-#define SLUSERHEAD	getslang(501)
-#define SLPLACE getslang(502)
-#define SLRANDQUOTE	getslang(510)
-#define SLUWORDSTATS	getslang(520)
-#define SLOTHERUSERS	getslang(530)
-
 #define SLMISCTITLE	getslang(600)
 #define SLMISCHEAD	getslang(610)
 #define SLMAUSERS       getslang(620)

@@ -1,6 +1,6 @@
 %{help=stats settings}%{+n}
 ###  Settings for the %bstats module%b
-  save-stats webupdate topnr graphnr autoadd expire-users
+  save-stats webupdate topnr graphnr autoadd
   quote-frequency log-wordstats min-word-length
   use-eggdrop-userfile table-border display-urls kick-context
   display-kicks display-average-users show-userlist
@@ -8,6 +8,7 @@
   webdir smilies graphstats graphgif graphcolor livestats-loglevel
   livestats-log stat-reply livestats-ignore-msg livestats-ip
   max-stat-cmds max-livestats-access autoadd-min-lines
+  expire-base expire-factor
 %{help=set save-stats}
 %{+n}
 ###  %bset save-stats%b <#>
@@ -30,11 +31,6 @@
 ###  %bset autoadd%b <#>
   autoadd users to the userbase if they stay on the channel
   for more than # minutes
-%{help=set expire-users}
-%{+n}
-###  %bset expire-users%b <#>
-  delete users/hosts if they haven't been seen for more than
-  x days
 %{help=set quote-frequency}
 %{+n}
 ###  %bset quote-frequency%b <#>

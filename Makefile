@@ -22,11 +22,11 @@ modules: ../../../stats.$(MOD_EXT)
 	mv stats.o ../
 
 ../../../stats.$(MOD_EXT): ../stats.o
-	$(LD) -o ../../../stats.$(MOD_EXT) ../stats.o $(XLIBS)
+	$(LD) $(CFLAGS) -o ../../../stats.$(MOD_EXT) ../stats.o $(XLIBS)
 
 core: core.o
 
 core.o: core/core.c
-	gcc -pipe -g -O2 -I. -g3 -DNO_EGG core/core.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -I. -DNO_EGG core/core.c
 
 #safety hash

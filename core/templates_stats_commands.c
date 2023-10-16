@@ -982,7 +982,8 @@ static void template_send_onchanlist(int idx, struct template_content *h_tpc)
   if (!chan)
     return;
   for (m = schan_members_getfirst(&chan->members); m ; m = schan_members_getnext(&chan->members)) {
-    glob_statsmember = m;
+    glob_statsmember = m; /*FIXME: heap-use-after-free */
+
     glob_user = m->user;
     if (m->stats)
       glob_locstats = m->stats;

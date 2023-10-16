@@ -52,7 +52,7 @@ struct stats_userlist {
 #define suser_setflag(u, flag)	(u->flags |= flag)
 #define suser_delflag(u, flag)	(u->flags &= ~flag)
 
-#define TIMETOLIVE(x) (((now - x->created) * (expire_factor / 100)) + (expire_base * 86400))
+#define TIMETOLIVE(x) ((expire_base * 86400) + (now - x->created) * expire_factor / 100)
 
 static struct stats_userlist *addsuser(char *, time_t, time_t);
 static struct stats_userlist *findsuser(char *);
@@ -60,7 +60,6 @@ static struct stats_userlist *findsuser_by_name(char *);
 static struct stats_userlist *stats_userlist_create_entry(char *);
 static void stats_userlist_free_entry(struct stats_userlist *);
 static void saddhost(struct stats_userlist *u, char *host, time_t lastused, time_t created);
-static void welcome_suser(char *nick, struct stats_userlist *u, char *chan);
 static int listsuser(locstats *ls, char *chan);
 static void weed_userlink_from_chanset(struct stats_userlist *u);
 static void weed_statlink_from_chanset(locstats *ls);

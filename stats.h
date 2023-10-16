@@ -124,7 +124,6 @@ static int stats_userlist_expmem_entry(struct stats_userlist *);
 static void delsuser(char *);
 static void saddhost(struct stats_userlist *, char *, time_t, time_t);
 static int sdelhost(struct stats_userlist *, char *);
-static void welcome_suser(char *, struct stats_userlist *, char *);
 static void nincrstats(locstats *, int, int);
 static locstats *initstats(char *, char *);
 static int listsuser(locstats *, char *);

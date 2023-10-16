@@ -202,6 +202,18 @@ static int sdelhost(struct stats_userlist *u, char *host)
   return 0;
 }
 
+static void welcome_suser(char *nick, struct stats_userlist *u, char *chan)
+{
+  char *text;
+
+  reset_global_vars();
+  glob_user = u;
+  glob_nick = nick;
+  glob_slang = slang_find(coreslangs, slang_chanlang_get(chanlangs, chan));
+  for (text = getslang_first(500); text; text = getslang_next())
+    dprintf(DP_HELP, "NOTICE %s :%s\n", nick, text);
+}
+
 static void stats_autosadd(struct stats_member *m, struct stats_chan *chan)
 {
   struct stats_userlist *u;
@@ -255,7 +267,8 @@ static void stats_autosadd(struct stats_member *m, struct stats_chan *chan)
       putlog(LOG_MISC, "*", "Stats.Mod: Added %s(%s) to userbase.", u->user, mhost);
     m->user = u;
     // send a welcome message to our new user
-    welcome_suser(m->nick, u, chan->chan);
+    if (autoadd_welcome)
+      welcome_suser(m->nick, u, chan->chan);
   }
   if (m->user) {
     m->stats = findlocstats(chan->chan, m->user->user);
@@ -265,18 +278,6 @@ static void stats_autosadd(struct stats_member *m, struct stats_chan *chan)
     m->stats = NULL;
   nfree(mhost);
   nfree(host);
-}
-
-static void welcome_suser(char *nick, struct stats_userlist *u, char *chan)
-{
-  char *text;
-
-  reset_global_vars();
-  glob_user = u;
-  glob_nick = nick;
-  glob_slang = slang_find(coreslangs, slang_chanlang_get(chanlangs, chan));
-  for (text = getslang_first(500); text; text = getslang_next())
-    dprintf(DP_HELP, "NOTICE %s :%s\n", nick, text);
 }
 
 static int listsuser(locstats *ls, char *chan)

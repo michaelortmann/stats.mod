@@ -1,5 +1,12 @@
 Changes in Stats.mod: (since v1.0.1)
 --------------------
+1.8
+- Add FIXME for heap-use-after-free
+- Added doc for expire-base and expire-factor and removed unused config
+  options expire-users and expire-delay
+- Fix percent-encoding for 0-9 and -._~
+- Added config file option: $autoadd-welcome
+
 1.7
 - Fix typo
 - Fix stringop-truncation, strncpy() -> strlcpy()

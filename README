@@ -24,8 +24,8 @@ Unfortunately, you need to compile stats.mod within your eggdrop source,
 so if you removed your original compile directory, you'll have to
 compile the whole bot again... sorry.
 
-Put stats.mod.1.7.tar.gz in ~/eggdrop-1.9.5/src/mod/,
-and unpack it (tar xfz stats.mod-1.7.tar.gz). Change directory
+Put stats.mod.1.8.tar.gz in ~/eggdrop-1.9.5/src/mod/,
+and unpack it (tar xfz stats.mod-1.8.tar.gz). Change directory
 back to ~/eggdrop-1.9.5/. Type 'make config'. Type 'make', wait until compiling
 is done and use 'make install' to install the bot and stats.mod.
 

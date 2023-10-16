@@ -914,13 +914,13 @@ static char *encode_url(char *url)
   buf = encoded_url_buf;
   while (url[0] && (buf < (encoded_url_buf + 120))) {
     c = url[0];
-    if (((c >= 97) && (c <= 122)) || ((c >= 65) && (c <= 90))) {
+    if (((c >= 'a') && (c <= 'z')) || ((c >= '0') && (c <= '9')) || ((c >= 'A') && (c <= 'Z')) || c == '-' || c == '.' || c == '_' || c == '~') {
       buf[0] = c;
       buf++;
     } else {
       buf[0] = '%';
       buf++;
-      snprintf(buf, 3, "%02x", c);
+      sprintf(buf, "%02x", c);
       buf += 2;
     }
     url++;
