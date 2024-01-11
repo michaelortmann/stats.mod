@@ -38,7 +38,7 @@ static int schan_expmem(void *data)
 	size += sizeof(struct stats_chan);
 	size += strlen(((struct stats_chan *) data)->chan) + 1;
 	size += llist_expmem(&(((struct stats_chan *)data)->members));
-	return 0;
+	return size;
 }
 
 static void schan_free(void *data)

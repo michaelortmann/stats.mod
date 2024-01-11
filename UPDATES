@@ -1,5 +1,11 @@
 Changes in Stats.mod: (since v1.0.1)
 --------------------
+1.9
+- Cleanup egg_check_chan_desynch()
+- Fix illegal character encoding in string literal
+- Fix schan_expmem()
+- Fix typo
+
 1.8
 - Add FIXME for heap-use-after-free
 - Added doc for expire-base and expire-factor and removed unused config

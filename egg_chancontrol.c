@@ -40,10 +40,8 @@ static void egg_check_chan_desynch()
 			debug3("Channel '%s' desynched: %d eggmembers vs %d statsmembers. Resynching...",
 					chan->chan, eggmembers, statsmembers);
 			ci_clearchan(chan);
-			for (m = eggchan->channel.member; m && m->nick && *m->nick; m = m->next) {
-				if (m->userhost)
-					schan_join(chan, m->nick, m->userhost, m->user ? m->user->handle : NULL);
-			}
+			for (m = eggchan->channel.member; m && m->nick[0]; m = m->next)
+				schan_join(chan, m->nick, m->userhost, m->user ? m->user->handle : NULL);
 		}
 	}
 }

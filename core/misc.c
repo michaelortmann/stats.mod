@@ -168,7 +168,7 @@ static int ismonday()
 }
 
 /* maskstricthost():
- * basically the same as maskhost() from src/misc.c, but _never_ stripts
+ * basically the same as maskhost() from src/misc.c, but _never_ strips
  * "~+-^=" off the host
  */
 static void maskstricthost(const char *s, char *nw)
@@ -300,7 +300,7 @@ static int email_send(char *to, char *subject, char *body)
 	fprintf(f, "\n");
 	fprintf(f, "%s", body);
 	fprintf(f, "\n.\n");
-	debug0("rückmeldung von pclose testen");
+	debug0("rueckmeldung von pclose testen");
 	if (pclose(f) == -1)
 		return SENDMAIL_ERROR;
 	else
