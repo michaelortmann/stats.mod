@@ -237,7 +237,7 @@ static int slang_valid(struct slang_header *where, char *language)
 }
 #endif
 
-static char getslang_error[12];
+static char getslang_error[17];
 static char *getslang(int id)
 {
   char *text;

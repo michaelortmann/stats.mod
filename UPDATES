@@ -1,5 +1,8 @@
 Changes in Stats.mod: (since v1.0.1)
 --------------------
+1.10
+- Fix buffer sizes
+
 1.9
 - Cleanup egg_check_chan_desynch()
 - Fix illegal character encoding in string literal

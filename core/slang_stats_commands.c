@@ -11,7 +11,7 @@ static void slang_send_bot()
 
 static void slang_send_topnr()
 {
-  char buf[10];
+  char buf[12];
 
   snprintf(buf, sizeof(buf), "%d", webnr);
   strncat(slang_text_buf, buf, sizeof(slang_text_buf));
@@ -19,7 +19,7 @@ static void slang_send_topnr()
 
 static void slang_send_graphnr()
 {
-  char buf[10];
+  char buf[12];
 
   snprintf(buf, sizeof(buf), "%d", graphnr);
   strncat(slang_text_buf, buf, sizeof(slang_text_buf));
@@ -27,7 +27,7 @@ static void slang_send_graphnr()
 
 static void slang_send_peak()
 {
-  char buf[10];
+  char buf[12];
 
   if (glob_globstats && (glob_timerange != T_ERROR)) {
     snprintf(buf, sizeof(buf), "%d", glob_globstats->peak[glob_timerange]);
@@ -37,7 +37,7 @@ static void slang_send_peak()
 
 static void slang_send_totalusers()
 {
-  char buf[10];
+  char buf[12];
 
   if (glob_globstats) {
     snprintf(buf, sizeof(buf), "%d", countstatmembers(glob_globstats));
@@ -79,7 +79,7 @@ static void slang_send_sorting()
 
 static void slang_send_range()
 {
-  char buf[10];
+  char buf[12];
 
   snprintf(buf, sizeof(buf), "%d", glob_range);
   strncat(slang_text_buf, buf, sizeof(slang_text_buf));
@@ -87,7 +87,7 @@ static void slang_send_range()
 
 static void slang_send_active_users()
 {
-  char buf[10];
+  char buf[12];
 
   if (glob_globstats && (glob_timerange != T_ERROR)) {
     snprintf(buf, sizeof(buf), "%d",
@@ -106,7 +106,7 @@ static void slang_send_word()
 
 static void slang_send_place()
 {
-  char buf[10];
+  char buf[12];
 
   snprintf(buf, sizeof(buf), "%d", glob_place);
   strncat(slang_text_buf, buf, sizeof(slang_text_buf));
@@ -145,7 +145,7 @@ static void slang_send_server_host()
 static void slang_send_server_port()
 {
   int i;
-  char buf[10];
+  char buf[12];
 
 #ifndef NO_EGG
   for (i = 0; i < dcc_total; i++) {
