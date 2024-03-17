@@ -94,6 +94,7 @@ static void llist_delete(struct llist_header *head, void *key)
 			else
 				p = head->root;
 			head->size--;
+			break;
 		} else {
 			last = p;
 			p = p->next;

@@ -1,5 +1,12 @@
 Changes in Stats.mod: (since v1.0.1)
 --------------------
+1.11
+- Fix heap-use-after-free
+- Enhance FIXME comment for heap-use-after-free
+- Fix typo
+- Update templates/stats/classic/credits.tpl
+- More dos2unix
+
 1.10
 - Fix buffer sizes
 

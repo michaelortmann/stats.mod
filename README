@@ -24,8 +24,8 @@ Unfortunately, you need to compile stats.mod within your eggdrop source,
 so if you removed your original compile directory, you'll have to
 compile the whole bot again... sorry.
 
-Put stats.mod.1.10.tar.gz in ~/eggdrop-1.9.5/src/mod/,
-and unpack it (tar xfz stats.mod-1.10.tar.gz). Change directory
+Put stats.mod.1.11.tar.gz in ~/eggdrop-1.9.5/src/mod/,
+and unpack it (tar xfz stats.mod-1.11.tar.gz). Change directory
 back to ~/eggdrop-1.9.5/. Type 'make config'. Type 'make', wait until compiling
 is done and use 'make install' to install the bot and stats.mod.
 
@@ -189,7 +189,7 @@ There are two flags for users: +/-list and +/-addhosts:
 - If a user has the flag -list, he/she/it won't be listed in the top10. (you
   probably want to set all your bot -list)
 - If a user is -addhosts, no new hostmasks will be added to him/her. You'll
-  have to add all hosts manually with .+shost. (useful if someone if trying
+  have to add all hosts manually with .+shost. (useful if someone is trying
   to fake you)
 
 Channel settings:
