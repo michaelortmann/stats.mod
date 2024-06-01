@@ -935,8 +935,9 @@ static char *encode_url(char *url)
  */
 static char *decode_url(char *paramurl)
 {
-  char *p, *buf, *url, c, hex[5];
+  char *p, *buf, *url, hex[5];
   long int i;
+  size_t l;
 
   // free url-buffer (global var)
   if (httpd_text_buf)
@@ -967,10 +968,11 @@ static char *decode_url(char *paramurl)
         i = '?';
         debug0("MiniHTTPd: decode_url(): i is 0");
       }
-      c = (char) i;
       // now append the decoded char to the url
-      httpd_text_buf = nrealloc(httpd_text_buf, strlen(httpd_text_buf) + 1 + 1);
-      sprintf(httpd_text_buf, "%s%c", httpd_text_buf, c);
+      l = strlen(httpd_text_buf);
+      httpd_text_buf = nrealloc(httpd_text_buf, l + 1 + 1);
+      httpd_text_buf[l++] = (char) i;
+      httpd_text_buf[l] = 0;
       // increase the pointer to abandon the encoded char
       url += 2;
     } else {

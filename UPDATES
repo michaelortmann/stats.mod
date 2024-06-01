@@ -1,5 +1,11 @@
 Changes in Stats.mod: (since v1.0.1)
 --------------------
+1.12
+- Fix restrict
+- Fix typo
+- Fix comparison
+- Fix stats.help [Patch by: wilk wilkowy]
+
 1.11
 - Fix heap-use-after-free
 - Enhance FIXME comment for heap-use-after-free

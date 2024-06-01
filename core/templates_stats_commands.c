@@ -540,7 +540,7 @@ static void template_send_hosts(int idx, struct template_content *h_tpc)
       continue;
     host = strrchr(h->host, '.') + 1;
     // skip other unusable hosts
-    if (!((host - 1) && host)) {
+    if (!host) {
       debug1("[stats.mod] Skipping host-stats for '%s'.", h->host);
       continue;
     }

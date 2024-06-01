@@ -91,7 +91,7 @@ D 12 etwas Zeit
 # userpage head
 710 Statistiken für <?user/?> in <?chan/?>
 720 ICQ#
-721 eMail
+721 E-Mail
 722 Homepage
 723 Alter
 730 Platz
@@ -162,7 +162,7 @@ F vocables 2 Auch <a href="../users/<?user/?>/"><?user/?>'s</a> Wortschatz ist n
 1040 Neues Passwort
 1045 Neues Passwort (Bestätigung)
 1050 ICQ#
-1060 eMail
+1060 E-Mail
 1070 Homepage
 1080 List me in the top<?topnr/?>?
 1081 Soll ich automatisch neue Hosts zu deinem Account hinzufügen?
