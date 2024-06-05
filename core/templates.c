@@ -61,7 +61,7 @@ static int expmem_templates()
 static int loadskin(char *parbuf)
 {
   FILE *f;
-  char *buf, *s, *cmd, *str_skin, *name, *filename, *shortname, *longname;
+  char buf[2000], *s, *cmd, *str_skin, *name, *filename, *shortname, *longname;
   char *conffile, *path, *filebuf;
   struct template_skin *skin;
   struct template_content *content;
@@ -83,13 +83,14 @@ static int loadskin(char *parbuf)
     debug1("empty path, new path: %s", path);
   }
   skin = NULL;
-  buf = nmalloc(2000);
   while (!feof(f)) {
     s = buf;
-    if (fgets(s, 2000, f)) {
+    if (fgets(s, sizeof buf, f)) {
       // at first, kill those stupid line feeds and carriage returns...
       if (s[strlen(s) - 1] == '\n')
         s[strlen(s) - 1] = 0;
+      if (!s[0])
+        continue;
       if (s[strlen(s) - 1] == '\r')
         s[strlen(s) - 1] = 0;
       if (!s[0])
@@ -103,7 +104,6 @@ static int loadskin(char *parbuf)
         if (!skin) {
           putlog(LOG_MISC, "*", "ERROR loading skin: unknown error creating skin structure!");
           fclose(f);
-          nfree(buf);
           return 0;
         }
       } else if (!strcasecmp(cmd, "template")) {
@@ -149,7 +149,6 @@ static int loadskin(char *parbuf)
       }
     }
   }
-  nfree(buf);
   return 1;
 }
 

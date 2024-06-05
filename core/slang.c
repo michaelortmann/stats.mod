@@ -161,7 +161,7 @@ static int slang_load(struct slang_header *slang, char *filename)
     return 0;
   }
   line = 0;
-  while (fgets(buf, (sizeof buf) - 1, f)) {
+  while (fgets(buf, sizeof buf, f)) {
     line++;
     // at first, kill those stupid line feeds and carriage returns...
     if (buf[strlen(buf) - 1] == '\n')
