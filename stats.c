@@ -31,7 +31,7 @@
 
 #define MAKING_STATS
 #define MODULE_NAME "stats"
-#define MODULE_VERSION "1.13"
+#define MODULE_VERSION "1.14"
 #ifndef NO_EGG
 #include "../module.h"
 #include "../irc.mod/irc.h"
@@ -414,6 +414,9 @@ static char *stats_close()
   rem_help_reference("stats.help");
   del_hook(HOOK_MINUTELY, (Function) stats_minutely);
   del_hook(HOOK_DAILY, (Function) stats_daily);
+#ifdef HOOK_RESET_MEMBER
+  del_hook(HOOK_RESET_MEMBER, (Function) egg_check_chan_desynch);
+#endif
   module_undepend(MODULE_NAME);
 #ifndef NO_MEM_DEBUG
   dmd_unload();
@@ -446,7 +449,7 @@ char *stats_start(Function * global_funcs)
 
   chanlangs = NULL;
   slang_glob_init();
-  module_register(MODULE_NAME, stats_table, 1, 13);
+  module_register(MODULE_NAME, stats_table, 1, 14);
   if (!(irc_funcs = module_depend(MODULE_NAME, "irc", 1, 0)))
     return "You need the irc module to use the stats module.";
   if (!(server_funcs = module_depend(MODULE_NAME, "server", 1, 0)))
@@ -481,6 +484,9 @@ char *stats_start(Function * global_funcs)
   add_tcl_commands(mytcls);
   add_hook(HOOK_MINUTELY, (Function) stats_minutely);
   add_hook(HOOK_DAILY, (Function) stats_daily);
+#ifdef HOOK_RESET_MEMBER
+  add_hook(HOOK_RESET_MEMBER, (Function) egg_check_chan_desynch);
+#endif
   add_help_reference("stats.help");
   lastmonth = getmonth();
   read_stats();

@@ -984,7 +984,7 @@ static void template_send_onchanlist(int idx, struct template_content *h_tpc)
   for (m = schan_members_getfirst(&chan->members); m ; m = schan_members_getnext(&chan->members)) {
     glob_statsmember = m;
 
-    glob_user = m->user; /* FIXME: heap-use-after-free - free() in tclchan.c:init_channel() - see https://github.com/eggheads/eggdrop/pull/1550 */
+    glob_user = m->user; /* heap-use-after-free - free() in tclchan.c:init_channel() - Fix: https://github.com/eggheads/eggdrop/pull/1610 */
     if (m->stats)
       glob_locstats = m->stats;
     else
@@ -997,7 +997,7 @@ static void template_send_usermode(int idx, struct template_content *h_tpc)
 {
   if (glob_statsmember && glob_statsmember->eggmember) {
 #ifndef NO_EGG
-    if (chan_hasop(glob_statsmember->eggmember)) /* FIXME: heap-use-after-free - free() in tclchan.c:init_channel() - see https://github.com/eggheads/eggdrop/pull/1550 */
+    if (chan_hasop(glob_statsmember->eggmember)) /* heap-use-after-free - free() in tclchan.c:init_channel() - Fix: https://github.com/eggheads/eggdrop/pull/1610 */
       dprintf(idx, "@");
     if (chan_hasvoice(glob_statsmember->eggmember))
       dprintf(idx, "+");
