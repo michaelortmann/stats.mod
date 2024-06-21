@@ -27,7 +27,7 @@ static int tcl_incrstats STDVAR
     set = 0;
   type = typetoi(argv[3]);
   if (type == -3) {
-    Tcl_AppendResult(irp, "invalid type", NULL);
+    Tcl_SetResult(irp, "invalid type", TCL_STATIC);
     return TCL_ERROR;
   }
   incrstats(argv[1], argv[2], type, atoi(argv[4]), set);
@@ -41,17 +41,17 @@ static int tcl_getstats STDVAR
 
   BADARGS(4, 5, " user chan type ?today?");
   if (typetoi(argv[3]) < 0) {
-    Tcl_AppendResult(irp, "invalid type", NULL);
+    Tcl_SetResult(irp, "invalid type", TCL_STATIC);
     return TCL_ERROR;
   }
   if (argc == 5)
     today = atoi(argv[4]);
   if ((today != 1) && (today != 0)) {
-    Tcl_AppendResult(irp, "invalid today parameter. Must be 0 or 1.", NULL);
+    Tcl_SetResult(irp, "invalid today parameter. Must be 0 or 1.", TCL_STATIC);
     return TCL_ERROR;
   }
   sprintf(s, "%d", getstats(argv[1], argv[2], argv[3], today));
-  Tcl_AppendResult(irp, s, NULL);
+  Tcl_SetResult(irp, s, TCL_STATIC);
   return TCL_OK;
 }
 
@@ -66,7 +66,7 @@ static int tcl_livestats STDVAR
   }
   port = atoi(argv[1]);
   if (port < 1) {
-    Tcl_AppendResult(irp, "invalid port", NULL);
+    Tcl_SetResult(irp, "invalid port", TCL_STATIC);
     return TCL_ERROR;
   }
   start_httpd(port);
@@ -83,7 +83,7 @@ static int tcl_resetuser STDVAR
   chan = argv[2];
   ls = findlocstats(chan, user);
   if (!ls) {
-    Tcl_AppendResult(irp, "couldn't find stats for user", NULL);
+    Tcl_SetResult(irp, "couldn't find stats for user", TCL_STATIC);
     return TCL_ERROR;
   }
   resetlocstats(ls);
@@ -100,7 +100,7 @@ static int tcl_resetslang STDVAR
 static int tcl_getslang STDVAR
 {
   BADARGS(2, 2, " ID");
-  Tcl_AppendResult(irp, getslang(atoi(argv[1])), NULL);
+  Tcl_SetResult(irp, getslang(atoi(argv[1])), TCL_STATIC);
   return TCL_OK;
 }
 
@@ -111,9 +111,9 @@ static int tcl_nick2suser STDVAR
   BADARGS(3, 3, " nick channel");
   m = getschanmember(argv[1], argv[2]);
   if (m && m->user)
-    Tcl_AppendResult(irp, m->user->user, NULL);
+    Tcl_SetResult(irp, m->user->user, TCL_STATIC);
   else
-    Tcl_AppendResult(irp, "*", NULL);
+    Tcl_SetResult(irp, "*", TCL_STATIC);
   return TCL_OK;
 }
 
@@ -125,13 +125,13 @@ static int tcl_findsuser STDVAR
   BADARGS(2, 2, " nick!user@host");
   ou = get_user_by_host(argv[1]);
   if (ou)
-	Tcl_AppendResult(irp, ou->handle, NULL);
+    Tcl_SetResult(irp, ou->handle, TCL_STATIC);
   else {
     u = findsuser(argv[1]);
     if (u)
-      Tcl_AppendResult(irp, u->user, NULL);
+      Tcl_SetResult(irp, u->user, TCL_STATIC);
     else
-      Tcl_AppendResult(irp, "*", NULL);
+      Tcl_SetResult(irp, "*", TCL_STATIC);
   }
   return TCL_OK;
 }
@@ -142,7 +142,7 @@ static int tcl_loadstatsskin STDVAR
 
   BADARGS(2, 2, " skinfile");
   if (!loadskin(argv[1])) {
-    Tcl_AppendResult(irp, "Couldn't load skin!!!", NULL);
+    Tcl_SetResult(irp, "Couldn't load skin!", TCL_STATIC);
     return TCL_ERROR;
   } else {
     return TCL_OK;
@@ -170,7 +170,7 @@ static int tcl_loadstatslang STDVAR
   slang = slang_find(coreslangs, shortname);
   Assert(slang);
   if (!slang_load(slang, filename)) {
-    Tcl_AppendResult(irp, "Couldn't open slang file!!!", NULL);
+    Tcl_SetResult(irp, "Couldn't open slang file!!!", TCL_STATIC);
     return TCL_ERROR;
   }
   return TCL_OK;
@@ -185,13 +185,13 @@ static int tcl_schattr STDVAR
   BADARGS(3, 99, " user [+/-list] [+/-addhosts] ...");
   u = findsuser_by_name(argv[1]);
   if (!u) {
-    Tcl_AppendResult(irp, "Unknown user.", NULL);
+    Tcl_SetResult(irp, "Unknown user.", TCL_STATIC);
     return TCL_ERROR;
   }
   for (i = 2; i < argc; i++) {
     if (!user_changeflag(u, argv[i])) {
       snprintf(s, sizeof(s), "Unknown flag: %s", argv[i]);
-      Tcl_AppendResult(irp, s, NULL);
+      Tcl_SetResult(irp, s, TCL_STATIC);
       return TCL_ERROR;
     }
   }
