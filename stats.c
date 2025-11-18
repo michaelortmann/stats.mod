@@ -31,7 +31,7 @@
 
 #define MAKING_STATS
 #define MODULE_NAME "stats"
-#define MODULE_VERSION "1.15"
+#define MODULE_VERSION "1.16"
 #ifndef NO_EGG
 #include "../module.h"
 #include "../irc.mod/irc.h"
@@ -449,7 +449,7 @@ char *stats_start(Function * global_funcs)
 
   chanlangs = NULL;
   slang_glob_init();
-  module_register(MODULE_NAME, stats_table, 1, 15);
+  module_register(MODULE_NAME, stats_table, 1, 16);
   if (!(irc_funcs = module_depend(MODULE_NAME, "irc", 1, 0)))
     return "You need the irc module to use the stats module.";
   if (!(server_funcs = module_depend(MODULE_NAME, "server", 1, 0)))

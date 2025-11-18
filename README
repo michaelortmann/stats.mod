@@ -17,22 +17,22 @@ Installation:
 
 Stats.mod should work with eggdrop 1.8.4 and newer.
 
-The following instructions assume, ~/eggdrop-1.10.0/ is the directory
+The following instructions assume, ~/eggdrop-1.10.1/ is the directory
 where you installed your eggdrop from. (of course, other source dirs
 will work as well)
 Unfortunately, you need to compile stats.mod within your eggdrop source,
 so if you removed your original compile directory, you'll have to
 compile the whole bot again... sorry.
 
-Put stats.mod.1.15.tar.gz in ~/eggdrop-1.10.0/src/mod/,
-and unpack it (tar xfz stats.mod-1.15.tar.gz). Change directory
-back to ~/eggdrop-1.10.0/. Type 'make config'. Type 'make', wait until compiling
+Put stats.mod.1.16.tar.gz in ~/eggdrop-1.10.1/src/mod/,
+and unpack it (tar xfz stats.mod-1.16.tar.gz). Change directory
+back to ~/eggdrop-1.10.1/. Type 'make config'. Type 'make', wait until compiling
 is done and use 'make install' to install the bot and stats.mod.
 
-Don't forget to copy the language files from ~/eggdrop-1.10.0/src/mod/stats.mod/
+Don't forget to copy the language files from ~/eggdrop-1.10.1/src/mod/stats.mod/
 to ~/eggdrop/language/ !
 
-All settings can be found in ~/eggdrop-1.10.0/src/mod/stats.mod/stats.conf
+All settings can be found in ~/eggdrop-1.10.1/src/mod/stats.mod/stats.conf
 I suggest to copy it to your eggdrop directory (probably ~/eggdrop/),
 edit it to fit your needs and put a 'source stats.conf' at the end of
 your eggdrop config file. This will execute the config file with every

@@ -583,7 +583,7 @@ static void tell_wordstats(char *nick, char *dest, char *hand, char *channel, ch
       while (ws && (i < 10)) {
         i++;
         tosend = nrealloc(tosend, 14 + strlen(tosend) + 5 + strlen(ws->word) + 10 + 1);
-        sprintf(tosend, "%s %d. %s (%d)", tosend, i, ws->word, ws->nr);
+        sprintf(tosend + strlen(tosend), " %d. %s (%d)", i, ws->word, ws->nr);
         ws = ws->next;
       }
       dprintf(DP_HELP, "%s\n", tosend);
@@ -651,7 +651,7 @@ static void tell_topwords(char *nick, char *dest, char *hand, char *channel)
   while (ws && (i < 10)) {
     i++;
     tosend = nrealloc(tosend, 14 + strlen(tosend) + 5 + strlen(ws->word) + 10);
-    sprintf(tosend, "%s %d. %s (%d)", tosend, i, ws->word, ws->nr);
+    sprintf(tosend + strlen(tosend), " %d. %s (%d)", i, ws->word, ws->nr);
     ws = ws->next;
   }
   dprintf(DP_HELP, "%s\n", tosend);
