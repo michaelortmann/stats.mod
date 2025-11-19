@@ -166,7 +166,7 @@ Static Webfiles:
 If there's really no way to use livestats, stats.mod can also generate static
 web files.
 In this case, it simply mirrors the whole livestats server into a directory
-on your shell. Of course, this takes some time. You bot won't be able to
+on your shell. Of course, this takes some time. Your bot won't be able to
 do anything while it's generating the files, so only use it if there's no
 other way. (expect an occasional ping timeout on large channels)
 Be sure that you chose an empty output directory.
