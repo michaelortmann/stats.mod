@@ -511,7 +511,7 @@ static void timeout_http(int idx)
 {
 #ifdef flush_inbuf
   if (http_connection(idx)->getpostparams && http_connection(idx)->path) {
-    // If there's still something in the inbuffer, then we might still be receivng
+    // If there's still something in the inbuffer, then we might still be receiving
     // POST parameters or something. Just let the connection live a bit longer.
     // (FIXME: DOSable by flooding with body)
     if (flush_inbuf(idx) > 0) {
